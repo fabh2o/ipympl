@@ -486,6 +486,11 @@ class _Backend_ipympl(_Backend):
             figure.patch.set_alpha(0)
         manager = FigureManager(canvas, num)
 
+        canvas._handle_message(canvas, {'type': 'send_image_mode'}, [])
+        canvas._handle_message(canvas, {'type':'refresh'}, [])
+        canvas._handle_message(canvas,{'type': 'initialized'},[])
+        canvas._handle_message(canvas,{'type': 'draw'},[])
+
         if is_interactive():
             _Backend_ipympl._to_show.append(figure)
             figure.canvas.draw_idle()
